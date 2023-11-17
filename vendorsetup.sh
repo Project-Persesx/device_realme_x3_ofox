@@ -17,12 +17,12 @@
 #
 # 	Please maintain this if you use this script or any part of it
 #
-FDEVICE="RMX2081"
+FDEVICE="x3"
 #set -o xtrace
 
 fox_get_target_device() {
 local chkdev=$(echo "$BASH_SOURCE" | grep -w $FDEVICE)
-   if [ -n "$chkdev" ]; then 
+   if [ -n "$chkdev" ]; then
       FOX_BUILD_DEVICE="$FDEVICE"
    else
       chkdev=$(set | grep BASH_ARGV | grep -w $FDEVICE)
@@ -35,11 +35,11 @@ if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
 fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
-	export DEVICE_PATH=device/realme/RMX2081
+	export DEVICE_PATH=device/realme/x3
 	export LC_ALL="C.UTF-8"
  	export ALLOW_MISSING_DEPENDENCIES=true
 	export PLATFORM_VERSION=20.1.0
- 	
+
  	#OFR build settings & info
 	export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
 	export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
@@ -59,13 +59,13 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_USE_TAR_BINARY=1
 	export FOX_USE_XZ_UTILS=1
 	export FOX_USE_SED_BINARY=1
-	
+
 	#OFR patches
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
 	export OF_PATCH_AVB20=1
 	export OF_DONT_PATCH_ENCRYPTED_DEVICE=1
 	export FOX_BUGGED_AOSP_ARB_WORKAROUND="1546300800"; # Tuesday, January 1, 2019 12:00:00 AM GMT+00:00 
-	
+
 	#OTA
 	export OF_KEEP_DM_VERITY=1
 
@@ -84,12 +84,12 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_ENABLE_USB_STORAGE=1
 	export OF_NO_SPLASH_CHANGE=1
 	export OF_HIDE_NOTCH=1
-	
+
 	# Unified X3 and X3 SuperZoom
-	export TARGET_DEVICE_ALT="RMX2081L1, RMX2085L1, RMX2086L1, RMX2083L1, RMX2082L1"
-	
+	export TARGET_DEVICE_ALT="x3, RMX2081L1, RMX2085L1, RMX2086L1, RMX2083L1, RMX2082L1"
+
 	# Maintainer
-	export OF_MAINTAINER=NishantKumar6342
+	export OF_MAINTAINER=Perses
 
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
